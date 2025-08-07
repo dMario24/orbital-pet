@@ -24,7 +24,7 @@ export default function LoginPage() {
       provider: 'kakao',
       options: {
         redirectTo: `${window.location.origin}/auth/callback`,
-        scopes: 'profile_image profile_nickname', // 추가된 부분
+        scopes: 'profile_nickname account_email', // 변경된 부분
       },
     })
 
