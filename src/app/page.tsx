@@ -1,9 +1,9 @@
-import { createServerSupabaseClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabaseServer'
 import { redirect } from 'next/navigation'
 import LogoutButton from '@/components/LogoutButton'
 
 export default async function HomePage() {
-  const supabase = createServerSupabaseClient()
+  const supabase = await createServerSupabaseClient()
 
   const {
     data: { session },
