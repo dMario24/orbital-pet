@@ -1,6 +1,7 @@
 import { createServerSupabaseClient } from '@/lib/supabaseServer'
 import { redirect } from 'next/navigation'
 import LogoutButton from '@/components/LogoutButton'
+import Image from 'next/image'
 
 export default async function HomePage() {
   const supabase = await createServerSupabaseClient()
@@ -21,7 +22,7 @@ export default async function HomePage() {
       <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md text-center">
         <p className="text-xl font-semibold mb-4">당신의 위성 펫</p>
         {/* 임시 펫 이미지 */}
-        <img src="/satellite_placeholder.png" alt="Satellite Pet" className="mx-auto w-32 h-32 mb-4" />
+        <Image src="/satellite_placeholder.png" alt="Satellite Pet" width={128} height={128} className="mx-auto w-32 h-32 mb-4" />
         <p className="text-gray-700">에너지: 100%</p>
         <p className="text-gray-700">통신 감도: 100%</p>
         <p className="text-gray-700 mb-6">행복도: 😊</p>

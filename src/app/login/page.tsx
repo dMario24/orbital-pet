@@ -3,6 +3,7 @@
 import { supabase } from '@/lib/supabaseClient'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
+import Image from 'next/image'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -43,7 +44,7 @@ export default function LoginPage() {
           onClick={handleKakaoLogin}
           className="bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
         >
-          <img src="/kakao_logo.svg" alt="Kakao Logo" className="w-5 h-5 mr-2" />
+          <Image src="/kakao_logo.svg" alt="Kakao Logo" width={20} height={20} className="w-5 h-5 mr-2" />
           <span>카카오로 로그인</span>
         </button>
       </div>
