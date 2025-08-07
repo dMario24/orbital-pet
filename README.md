@@ -4,7 +4,7 @@
 
 ## ✨ 기술 스택
 
-- **Framework**: Next.js
+- **Framework**: Next.js (v15.4.6)
 - **Database**: Supabase
 - **Deployment**: Vercel
 - **Styling**: (추후 Tailwind CSS 또는 Emotion/styled-components 사용 제안)
