@@ -26,15 +26,16 @@ async function subscribe(prevState: FormState, formData: FormData): Promise<Form
 const SatelliteArt = () => (
   <pre className="text-cyan-400 text-center text-sm md:text-base leading-tight font-mono">
 {`
-      /\\
-     /  \\
-    /____\\
-    |    |
-    |----|
-   /|    |\\
-  / |    | \\
- /  |    |  \\
-*---*----*---*
+      ( (
+       ) )
+    .-------.
+   /  @   @  \\
+  |     -     |
+  |  \\_____/  |
+  '-----------'
+     / /|\\ \\
+    / / | \\ \\
+   * * * *
 `}
   </pre>
 );
@@ -73,12 +74,12 @@ export default async function HomePage() {
             Orbital Pet<BlinkingCursor />
           </h1>
           <p className="text-base mt-2 text-green-300">
-            &gt; 당신만의 인공위성 애완동물을 키워보세요.
+            &gt; 인공위성 애완동물을 키워보세요.
           </p>
         </div>
 
         <div className="mt-8">
-          <p className="mb-2">$ enter_email_for_updates</p>
+          <p className="mb-2">$ 가장 먼저 소식을 받아보세요!</p>
           <SubscribeForm
             action={subscribe}
             submittingText={'구독 중...'}
@@ -87,9 +88,9 @@ export default async function HomePage() {
         </div>
 
         <div className="mt-8">
-          <p className="mb-2">$ join_the_mission</p>
+          <p className="mb-2">$ 함께 만들어요!</p>
           <div className="flex flex-col md:flex-row justify-center items-center gap-4">
-            <a href="#" className="hover:bg-green-700 p-1">
+            <a href="https://open.kakao.com/o/gYj8cuLh" className="hover:bg-green-700 p-1">
               [ 카카오톡 참여하기 ]
             </a>
             <div className="flex flex-wrap justify-center gap-2">
