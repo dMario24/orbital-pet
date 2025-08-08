@@ -1,12 +1,12 @@
 'use client'
 
-import { useFormState, useFormStatus } from 'react-dom'
-import { useEffect, useRef } from 'react'
+import { useActionState, useEffect, useRef } from 'react'
+import { useFormStatus } from 'react-dom'
 
 type FormState = { error?: string; success?: string; } | null;
 
 export function SubscribeForm({ action }: { action: (prevState: FormState, formData: FormData) => Promise<FormState> }) {
-  const [state, formAction] = useFormState(action, null)
+  const [state, formAction] = useActionState(action, null)
   const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
