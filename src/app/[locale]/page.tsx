@@ -25,9 +25,8 @@ async function subscribe(prevState: FormState, formData: FormData): Promise<Form
 }
 
 const SatelliteArt = () => (
-  <pre className="text-cyan-400 text-center text-sm md:text-base leading-none">
-    {`
-      /\\
+  <pre className="text-cyan-400 text-center text-sm md:text-base leading-tight">
+{`      /\\
      /  \\
     /____\\
     |    |
@@ -35,8 +34,7 @@ const SatelliteArt = () => (
    /|    |\\
   / |    | \\
  /  |    |  \\
-*---*----*---*
-    `}
+*---*----*---*`}
   </pre>
 );
 
@@ -91,7 +89,7 @@ export default async function HomePage() {
                 </a>
               </>
             )}
-            <div className="flex flex-wrap justify-center gap-2 border-l-2 border-green-700 pl-4">
+            <div className="flex flex-wrap justify-center gap-2 border-l-2 border-green-700 pl-4 ml-2">
               <a href="#" className="hover:bg-green-700 p-1">{t('mission.recruitment.mathematician')}</a>
               <a href="#" className="hover:bg-green-700 p-1">{t('mission.recruitment.developer')}</a>
               <a href="#" className="hover:bg-green-700 p-1">{t('mission.recruitment.planner')}</a>
