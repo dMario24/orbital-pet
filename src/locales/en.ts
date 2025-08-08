@@ -1,0 +1,16 @@
+export default {
+  'home.title': 'Orbital Pet',
+  'home.subtitle': '> Raise your own satellite pet.',
+  'subscribe.prompt': '$ enter_email_for_updates',
+  'subscribe.button.submitting': 'Submitting...',
+  'subscribe.button.submit': 'Submit',
+  'subscribe.success': 'Success: Thank you for subscribing!',
+  'subscribe.error.email_required': 'Error: Email is required.',
+  'subscribe.error.already_subscribed': 'Error: This email is already subscribed.',
+  'subscribe.error.general': 'Error: An error occurred while subscribing. Please try again.',
+  'mission.prompt': '$ join_the_mission',
+  'mission.kakao': '[ Join on KakaoTalk ]',
+  'mission.recruitment.mathematician': '#mathematician',
+  'mission.recruitment.developer': '#developer',
+  'mission.recruitment.planner': '#space_nerd_planner',
+} as const;

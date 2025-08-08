@@ -5,7 +5,13 @@ import { useFormStatus } from 'react-dom'
 
 type FormState = { error?: string; success?: string; } | null;
 
-export function SubscribeForm({ action }: { action: (prevState: FormState, formData: FormData) => Promise<FormState> }) {
+interface SubscribeFormProps {
+  action: (prevState: FormState, formData: FormData) => Promise<FormState>;
+  submittingText: string;
+  submitText: string;
+}
+
+export function SubscribeForm({ action, submittingText, submitText }: SubscribeFormProps) {
   const [state, formAction] = useActionState(action, null)
   const formRef = useRef<HTMLFormElement>(null)
 
@@ -16,31 +22,34 @@ export function SubscribeForm({ action }: { action: (prevState: FormState, formD
   }, [state])
 
   return (
-    <form ref={formRef} action={formAction} className="flex flex-col md:flex-row gap-2">
-      <input
-        type="email"
-        name="email"
-        placeholder="your-email@example.com"
-        required
-        className="flex-grow bg-gray-900 border border-gray-600 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
-      <SubmitButton />
-      {state?.error && <p className="text-red-400 text-sm mt-2">{state.error}</p>}
-      {state?.success && <p className="text-green-400 text-sm mt-2">{state.success}</p>}
+    <form ref={formRef} action={formAction} className="flex flex-col items-start gap-2">
+      <div className="flex items-center gap-2 w-full">
+        <span className="text-green-400">$</span>
+        <input
+          type="email"
+          name="email"
+          placeholder="your-email@example.com"
+          required
+          className="flex-grow bg-transparent border-none text-green-300 placeholder-gray-600 focus:outline-none"
+        />
+        <SubmitButton submittingText={submittingText} submitText={submitText} />
+      </div>
+      {state?.error && <p className="text-red-400 text-sm w-full">{state.error}</p>}
+      {state?.success && <p className="text-yellow-400 text-sm w-full">{state.success}</p>}
     </form>
   )
 }
 
-function SubmitButton() {
+function SubmitButton({ submittingText, submitText }: { submittingText: string; submitText: string; }) {
   const { pending } = useFormStatus()
 
   return (
     <button
       type="submit"
       disabled={pending}
-      className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed"
+      className="bg-green-800 hover:bg-green-700 text-green-200 font-bold py-1 px-3 rounded-sm border border-green-600 disabled:bg-gray-700 disabled:cursor-not-allowed"
     >
-      {pending ? '구독 중...' : '구독하기'}
+      {pending ? submittingText : submitText}
     </button>
   )
 }
