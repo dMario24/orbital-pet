@@ -82,8 +82,8 @@ export default async function HomePage() {
           <p className="mb-2">$ 가장 먼저 소식을 받아보세요!</p>
           <SubscribeForm
             action={subscribe}
-            submittingText={'구독 중...'}
-            submitText={'구독하기'}
+            submittingText={'✨'}
+            submitText={'OK'}
           />
         </div>
 
