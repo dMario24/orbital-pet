@@ -1,7 +1,7 @@
 import { SubscribeForm } from '@/components/SubscribeForm'
 import { createServerSupabaseClient } from '@/lib/supabaseServer'
 import { revalidatePath } from 'next/cache'
-import { getI18n } from '@/locales/server'
+import { getI18n, getCurrentLocale } from '@/locales/server'
 
 type FormState = { error?: string; success?: string; } | null;
 
@@ -46,6 +46,11 @@ const BlinkingCursor = () => (
 
 export default async function HomePage() {
   const t = await getI18n();
+  const locale = getCurrentLocale();
+
+  const kakaoUrl = process.env.NEXT_PUBLIC_KAKAO_URL || '#';
+  const discordUrl = process.env.NEXT_PUBLIC_DISCORD_URL || '#';
+  const telegramUrl = process.env.NEXT_PUBLIC_TELEGRAM_URL || '#';
 
   return (
     <div className="font-mono bg-black text-green-400 min-h-screen flex items-center justify-center p-4">
@@ -72,10 +77,21 @@ export default async function HomePage() {
         <div className="mt-8">
           <p className="mb-2">{t('mission.prompt')}</p>
           <div className="flex flex-col md:flex-row justify-center items-center gap-4">
-            <a href="#" className="hover:bg-green-700 p-1">
-              {t('mission.kakao')}
-            </a>
-            <div className="flex flex-wrap justify-center gap-2">
+            {locale === 'ko' ? (
+              <a href={kakaoUrl} target="_blank" rel="noopener noreferrer" className="hover:bg-green-700 p-1">
+                {t('mission.kakao')}
+              </a>
+            ) : (
+              <>
+                <a href={discordUrl} target="_blank" rel="noopener noreferrer" className="hover:bg-green-700 p-1">
+                  {t('mission.discord')}
+                </a>
+                <a href={telegramUrl} target="_blank" rel="noopener noreferrer" className="hover:bg-green-700 p-1">
+                  {t('mission.telegram')}
+                </a>
+              </>
+            )}
+            <div className="flex flex-wrap justify-center gap-2 border-l-2 border-green-700 pl-4">
               <a href="#" className="hover:bg-green-700 p-1">{t('mission.recruitment.mathematician')}</a>
               <a href="#" className="hover:bg-green-700 p-1">{t('mission.recruitment.developer')}</a>
               <a href="#" className="hover:bg-green-700 p-1">{t('mission.recruitment.planner')}</a>

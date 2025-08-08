@@ -10,6 +10,8 @@ export default {
   'subscribe.error.general': '오류: 구독 중 오류가 발생했습니다. 다시 시도해주세요.',
   'mission.prompt': '$ 임무에_참여하기',
   'mission.kakao': '[ 카카오톡 참여하기 ]',
+  'mission.discord': '[ Discord 참여하기 ]',
+  'mission.telegram': '[ Telegram 참여하기 ]',
   'mission.recruitment.mathematician': '#수학자',
   'mission.recruitment.developer': '#개발자',
   'mission.recruitment.planner': '#우주덕후_기획자',

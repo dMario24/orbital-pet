@@ -10,6 +10,8 @@ export default {
   'subscribe.error.general': 'Error: An error occurred while subscribing. Please try again.',
   'mission.prompt': '$ join_the_mission',
   'mission.kakao': '[ Join on KakaoTalk ]',
+  'mission.discord': '[ Join on Discord ]',
+  'mission.telegram': '[ Join on Telegram ]',
   'mission.recruitment.mathematician': '#mathematician',
   'mission.recruitment.developer': '#developer',
   'mission.recruitment.planner': '#space_nerd_planner',
