@@ -21,12 +21,12 @@ import { version } from '../../package.json';
 import I18nProvider from '@/components/I18nProvider';
 import { getCurrentLocale } from '@/locales/server';
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const locale = getCurrentLocale()
+  const locale = await getCurrentLocale()
   return (
     <html lang={locale}>
       <body
