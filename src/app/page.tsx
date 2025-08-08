@@ -43,10 +43,30 @@ const BlinkingCursor = () => (
   <span className="animate-blink bg-green-400 w-2 h-4 inline-block ml-1"></span>
 );
 
+const Stars = () => {
+  const starCount = 100;
+  const stars = [];
+
+  for (let i = 0; i < starCount; i++) {
+    const style = {
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      width: `${Math.random() * 2 + 1}px`,
+      height: `${Math.random() * 2 + 1}px`,
+      animationDelay: `${Math.random() * 4}s`,
+      animationDuration: `${Math.random() * 3 + 2}s`
+    };
+    stars.push(<div key={i} className="star" style={style}></div>);
+  }
+
+  return <div className="absolute top-0 left-0 w-full h-full overflow-hidden">{stars}</div>;
+};
+
 export default async function HomePage() {
   return (
-    <div className="font-mono bg-black text-green-400 min-h-screen flex flex-col items-center justify-center p-4">
-      <div className="w-full max-w-4xl border-2 border-green-500 bg-gray-900 bg-opacity-50 rounded-lg p-6 shadow-[0_0_20px_rgba(0,255,0,0.3)]">
+    <div className="font-mono bg-black text-green-400 min-h-screen flex flex-col items-center justify-center p-4 relative">
+      <Stars />
+      <div className="relative z-10 w-full max-w-4xl border-2 border-green-500 bg-gray-900 bg-opacity-50 rounded-lg p-6 shadow-[0_0_20px_rgba(0,255,0,0.3)]">
         <div className="text-center mb-6">
           <SatelliteArt />
           <h1 className="text-3xl md:text-4xl font-bold mt-4">
