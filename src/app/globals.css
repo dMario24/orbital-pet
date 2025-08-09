@@ -20,9 +20,27 @@
 }
 
 body {
-  background: #000;
-  color: var(--foreground);
+  background-color: #000;
+  color: #0f0;
   font-family: 'Courier New', Courier, monospace;
+}
+
+.crt-effect::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)));
+  z-index: 2;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+.crt-glow {
+  text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0;
 }
 
 @keyframes blink {
@@ -36,16 +54,4 @@ body {
 
 .animate-blink {
   animation: blink 1s step-end infinite;
-}
-
-@keyframes twinkle {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 1; }
-}
-
-.star {
-  position: absolute;
-  background-color: white;
-  border-radius: 50%;
-  animation: twinkle 2s infinite;
 }
