@@ -12,9 +12,11 @@
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.54.0",
     "@types/next": "^8.0.7",
+    "@types/showdown": "^2.0.6",
     "next": "15.4.6",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "showdown": "^2.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

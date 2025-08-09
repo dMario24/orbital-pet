@@ -1,117 +1,80 @@
-'use client'
+import { createServerSupabaseClient } from '@/lib/supabaseServer'
+import { redirect } from 'next/navigation'
+import { SubscribeForm } from '@/components/SubscribeForm'
+import { revalidatePath } from 'next/cache'
 
-import { useState, useEffect } from 'react';
-import Typewriter from '@/components/Typewriter';
-import CommandLine from '@/components/CommandLine';
+type FormState = { error?: string; success?: string; } | null;
 
-const scenes = {
-  BOOT: 'boot',
-  PROMPT: 'prompt',
-  ABOUT: 'about',
-  PROJECTS: 'projects',
-  CONTACT: 'contact',
-  NOT_FOUND: 'not_found',
-};
-
-const bootSequence = [
-  'Booting Orbital Pet OS v0.3.0...',
-  'Connecting to satellite network...',
-  'Connection established.',
-  'Welcome, developer!',
-];
-
-const helpText = 'Available commands: [about], [projects], [contact], [clear]';
-const commandNotFoundText = 'Command not found. Type [help] for a list of commands.';
-
-const AboutScene = () => (
-  <div>
-    <p>&gt; Orbital Pet is a web-based virtual pet service inspired by Tamagotchi.</p>
-    <p>&gt; Users can raise and manage their own satellite pet.</p>
-    <p>&gt; Join our mission to create a unique experience connecting space and everyday life.</p>
-  </div>
-);
-
-const ProjectsScene = () => (
-  <div>
-    <p>&gt; Current Mission: Pre-launch Landing Page</p>
-    <p>&gt; Status: <span className="text-yellow-400">COMPLETE</span></p>
-    <p>&gt; Next Mission: Core Pet-rearing System</p>
-  </div>
-);
-
-const ContactScene = () => (
-  <div>
-    <p>&gt; For inquiries, please join our community channels.</p>
-    <p>&gt; We are recruiting #mathematicians, #developers, and #space_nerd_planners.</p>
-  </div>
-);
-
-export default function HomePage() {
-  const [scene, setScene] = useState(scenes.BOOT);
-  const [bootIndex, setBootIndex] = useState(0);
-  const [history, setHistory] = useState<React.ReactNode[]>([]);
-
-  useEffect(() => {
-    if (scene === scenes.BOOT && bootIndex < bootSequence.length) {
-      const timer = setTimeout(() => {
-        setBootIndex(bootIndex + 1);
-      }, 1000);
-      return () => clearTimeout(timer);
+async function subscribe(prevState: FormState, formData: FormData): Promise<FormState> {
+  'use server'
+  const email = formData.get('email') as string
+  if (!email) {
+    return { error: '이메일은 필수입니다.' }
+  }
+  const supabase = await createServerSupabaseClient()
+  const { error } = await supabase.from('subscribers').insert({ email })
+  if (error) {
+    if (error.code === '23505') {
+      return { error: '이미 구독된 이메일입니다.' }
     }
-    if (scene === scenes.BOOT && bootIndex >= bootSequence.length) {
-      setTimeout(() => setScene(scenes.PROMPT), 1000);
-    }
-  }, [scene, bootIndex]);
+    return { error: '구독 중 오류가 발생했습니다. 다시 시도해주세요.' }
+  }
+  revalidatePath('/')
+  return { success: '구독해주셔서 감사합니다! 곧 소식을 전해드리겠습니다.' }
+}
 
-  const handleCommand = (command: string) => {
-    let output;
-    if (command === 'clear') {
-      setHistory([]);
-      return;
-    }
+export default async function HomePage() {
+  const supabase = await createServerSupabaseClient()
+  const { data: { session } } = await supabase.auth.getSession()
 
-    const newHistory = [...history, <p key={history.length}><span className="text-green-400">$ orbital-pet &gt;</span> {command}</p>];
+  if (session) {
+    redirect('/dashboard')
+  }
 
-    switch (command) {
-      case 'help':
-        output = <p>{helpText}</p>;
-        break;
-      case 'about':
-        output = <AboutScene />;
-        break;
-      case 'projects':
-        output = <ProjectsScene />;
-        break;
-      case 'contact':
-        output = <ContactScene />;
-        break;
-      default:
-        output = <p>{commandNotFoundText}</p>;
-    }
-    setHistory([...newHistory, output]);
-  };
+  const KAKAO_OPEN_CHAT_URL = process.env.KAKAO_OPEN_CHAT_URL || '#';
 
   return (
-    <div className="crt-effect font-mono bg-black text-green-400 min-h-screen p-4 md:p-8">
-      <div className="crt-glow w-full h-full">
-        {scene === scenes.BOOT && (
-          <div>
-            {bootSequence.slice(0, bootIndex).map((line, i) => (
-              <p key={i}>{line}</p>
-            ))}
-          </div>
-        )}
-        {scene !== scenes.BOOT && (
-          <div>
-            {bootSequence.map((line, i) => (
-              <p key={i}>{line}</p>
-            ))}
-            <p className="mt-4">{helpText}</p>
-            <div id="history">{history}</div>
-            <CommandLine prompt="$ orbital-pet >" onCommand={handleCommand} />
-          </div>
-        )}
+    <div className="font-mono bg-black text-white min-h-screen flex items-center justify-center p-4">
+      <div className="w-full max-w-4xl mx-auto">
+        <div className="text-center mb-10">
+          <h1 className="text-5xl md:text-6xl font-bold text-cyan-400 mb-4 animate-pulse">
+            Orbital Pet
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300">
+            당신만의 인공위성 애완동물을 키워보세요.
+          </p>
+        </div>
+
+        <div className="bg-gray-900 border border-gray-700 rounded-lg p-6 md:p-8 mb-10">
+          <h2 className="text-2xl font-bold text-green-400 mb-4">$ 새로운 소식 받기</h2>
+          <p className="text-gray-400 mb-4">가장 먼저 Orbital Pet의 출시 소식을 받아보세요. 스팸은 보내지 않습니다.</p>
+          <SubscribeForm
+            action={subscribe}
+            submittingText={'구독 중...'}
+            submitText={'구독하기'}
+          />
+        </div>
+
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-green-400 mb-4">$ 함께 만들기</h2>
+          <p className="text-gray-400 mb-6">
+            수학자, 우주덕후, 개발자, 디자이너, 마케터, 해커, 심지어 외계인까지!
+            <br />
+            저희와 함께 세상을 놀라게 할 프로젝트를 만들어갈 동료를 찾습니다.
+          </p>
+          <a
+            href={KAKAO_OPEN_CHAT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-3 px-6 rounded-lg inline-flex items-center transition-transform transform hover:scale-105 text-lg"
+          >
+            <span>카카오톡 오픈채팅 참여하기</span>
+          </a>
+          <a href="/milestone" className="text-cyan-400 hover:underline mt-4 inline-block">
+            &gt; 프로젝트 마일스톤 보기
+          </a>
+        </div>
       </div>
     </div>
-  );
+  )
 }
