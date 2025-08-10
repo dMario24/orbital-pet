@@ -21,8 +21,10 @@ const AsciiSatellite = () => (
   </pre>
 );
 
+type FormState = { error?: string; success?: string; } | null;
+
 type LandingPageClientProps = {
-  subscribeAction: (prevState: any, formData: FormData) => Promise<any>;
+  subscribeAction: (prevState: FormState, formData: FormData) => Promise<FormState>;
   kakaoUrl: string;
 };
 
