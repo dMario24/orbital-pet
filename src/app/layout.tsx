@@ -56,6 +56,8 @@ export const metadata: Metadata = {
   },
 };
 
+import AmplitudeProvider from "@/components/AmplitudeProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -67,7 +69,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="starfield"></div>
-        {children}
+        <AmplitudeProvider>{children}</AmplitudeProvider>
       </body>
     </html>
   );

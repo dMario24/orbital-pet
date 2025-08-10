@@ -4,6 +4,7 @@ import { supabase } from '@/lib/supabaseClient'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import Image from 'next/image'
+import { trackAmplitudeEvent } from '@/lib/amplitude'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -21,6 +22,7 @@ export default function LoginPage() {
   }, [router])
 
   const handleKakaoLogin = async () => {
+    trackAmplitudeEvent('CLICK_KAKAO_LOGIN')
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'kakao',
       options: {
