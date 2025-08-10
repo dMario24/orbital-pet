@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://orbital-pet.vercel.app/sitemap.xml
