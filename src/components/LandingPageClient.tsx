@@ -26,12 +26,15 @@ type FormState = { error?: string; success?: string; } | null;
 type LandingPageClientProps = {
   subscribeAction: (prevState: FormState, formData: FormData) => Promise<FormState>;
   kakaoUrl: string;
+  version: string;
 };
 
-export const LandingPageClient: React.FC<LandingPageClientProps> = ({ subscribeAction, kakaoUrl }) => {
+export const LandingPageClient: React.FC<LandingPageClientProps> = ({ subscribeAction, kakaoUrl, version }) => {
+  const terminalTitle = `[o]rbital-pet-v${version}`;
+
   return (
     <div className="font-mono text-white min-h-screen flex items-center justify-center p-4">
-      <TerminalWindow title="[o]rbital-pet-interface-v1.0">
+      <TerminalWindow title={terminalTitle}>
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex-1 text-center md:text-left">
             <h1 className="text-4xl md:text-5xl font-bold text-cyan-400 mb-4 text-glow">
