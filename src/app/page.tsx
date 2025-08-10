@@ -2,6 +2,7 @@ import { createServerSupabaseClient } from '@/lib/supabaseServer'
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 import { LandingPageClient } from '@/components/LandingPageClient'
+import pkg from '../../package.json'
 
 type FormState = { error?: string; success?: string; } | null;
 
@@ -37,6 +38,7 @@ export default async function HomePage() {
     <LandingPageClient
       subscribeAction={subscribe}
       kakaoUrl={KAKAO_OPEN_CHAT_URL}
+      version={pkg.version}
     />
   )
 }
