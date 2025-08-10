@@ -70,6 +70,13 @@ export default async function HomePage() {
           >
             <span>카카오톡 오픈채팅 참여하기</span>
           </a>
+          <a
+            href="/lab"
+            className="text-yellow-400 hover:underline mt-6 inline-block text-lg animate-pulse"
+          >
+            &gt; 실험실에서 궤도 펫 미리보기
+          </a>
+          <br />
           <a href="/milestone" className="text-cyan-400 hover:underline mt-4 inline-block">
             &gt; 프로젝트 마일스톤 보기
           </a>
