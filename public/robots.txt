@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://orbital-pet.diginori.com/sitemap.xml
