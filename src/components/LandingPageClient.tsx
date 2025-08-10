@@ -70,6 +70,8 @@ export const LandingPageClient: React.FC<LandingPageClientProps> = ({ subscribeA
                   500,
                   '외계인도 모십니다',
                   500,
+                  'Ελάτε στο Σύμπαν του Orbital Pet!',
+                  500,
                 ]}
                 wrapper="span"
                 speed={50}
