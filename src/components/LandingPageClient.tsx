@@ -86,6 +86,10 @@ export const LandingPageClient: React.FC<LandingPageClientProps> = ({ subscribeA
             <a href="/milestone" className="text-cyan-400 hover:underline mt-3 inline-block text-sm">
               &gt; cat ./PROJECT_MILESTONES
             </a>
+
+            <a href="/lab" className="text-cyan-400 hover:underline mt-3 inline-block text-sm">
+              &gt; bash ./lab/run.sh
+            </a>
           </div>
         </div>
       </TerminalWindow>
