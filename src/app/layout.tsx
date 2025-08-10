@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     siteName: "Orbital Pet",
     images: [
       {
-        url: "/satellite_placeholder.png",
+        url: "/og250811.png",
         width: 1200,
         height: 630,
         alt: "Orbital Pet",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
-    images: ["/satellite_placeholder.png"],
+    images: ["/og250811.png"],
   },
   alternates: {
     canonical: siteConfig.url,

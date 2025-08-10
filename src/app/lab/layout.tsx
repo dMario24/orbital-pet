@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     siteName: 'Orbital Pet',
     images: [
       {
-        url: `${siteUrl}/satellite_placeholder.png`, // Absolute URL for the image
+        url: `${siteUrl}/og250811.png`, // Absolute URL for the image
         width: 800,
         height: 600,
         alt: 'An image of the Orbital Pet satellite',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Orbital Pet Lab',
     description: 'A sneak peek at the upcoming Orbital Pet service. Come play with a virtual satellite!',
-    images: [`${siteUrl}/satellite_placeholder.png`],
+    images: [`${siteUrl}/og250811.png`],
   },
 }
 

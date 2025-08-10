@@ -43,8 +43,8 @@ export default function LabPage() {
         <div className="bg-gray-900 border-2 border-yellow-500 rounded-lg p-6 shadow-[0_0_20px_rgba(255,255,0,0.3)]">
           <div className="flex justify-center mb-4">
             <Image
-              src="/lab-logo.webp"
-              alt="Satellite Pet"
+              src="/lab-logo-300.webp"
+              alt="orbital cat"
               width={150}
               height={150}
               className="animate-pulse"
