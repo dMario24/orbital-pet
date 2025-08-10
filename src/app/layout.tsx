@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 const siteConfig = {
   title: "Orbital Pet: 당신만의 인공위성 애완동물",
   description: "당신만의 인공위성 애완동물을 키워보세요. Orbital Pet의 최신 소식을 받아보세요!",
-  url: "https://orbital-pet.vercel.app", // TODO: 프로덕션 URL로 변경해주세요.
+  url: "https://orbital-pet.diginori.com", // TODO: 프로덕션 URL로 변경해주세요.
 };
 
 export const metadata: Metadata = {
