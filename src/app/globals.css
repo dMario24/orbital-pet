@@ -14,13 +14,91 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #000000; /* Changed to pure black */
     --foreground: #ededed;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #000; /* Set background to black for the space theme */
+  color: #ededed;
+  /* Using a more classic monospace font. The page itself overrides this with font-mono from tailwind, but it's a good fallback. */
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Starfield Background */
+@keyframes stars {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+.starfield {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, #eee, transparent),
+    radial-gradient(1px 1px at 40px 70px, #fff, transparent),
+    radial-gradient(1px 1px at 50px 160px, #ddd, transparent),
+    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+    radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+    radial-gradient(1px 1px at 160px 120px, #ddd, transparent),
+    radial-gradient(2px 2px at 200px 50px, #fff, transparent),
+    radial-gradient(2px 2px at 400px 150px, #fff, transparent),
+    radial-gradient(2px 2px at 500px 80px, #fff, transparent),
+    radial-gradient(3px 3px at 600px 120px, #fff, transparent);
+  background-repeat: repeat;
+  background-size: 600px 400px;
+  animation: stars 15s linear infinite;
+  opacity: 0.5;
+}
+
+
+/* CRT Text Glow Effect */
+.text-glow {
+    text-shadow:
+        0 0 2px rgba(0, 255, 255, 0.7),
+        0 0 5px rgba(0, 255, 255, 0.5),
+        0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.text-glow-green {
+    text-shadow:
+        0 0 2px rgba(0, 255, 0, 0.7),
+        0 0 5px rgba(0, 255, 0, 0.5),
+        0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+/* Scanline effect for containers */
+.scanline-effect::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%,
+        rgba(0, 0, 0, 0.25) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 1;
+    pointer-events: none;
+    animation: scanline-anim 4s linear infinite;
+}
+
+@keyframes scanline-anim {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 0 -4px;
+    }
 }
