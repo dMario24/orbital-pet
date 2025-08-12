@@ -3,6 +3,7 @@ import "./globals.css";
 import { Metadata } from "next";
 import { GoogleTagManager } from '@next/third-parties/google'
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -72,6 +73,7 @@ export default function RootLayout({
         <GoogleTagManager gtmId="GTM-WNZ8TPZV" />
         {children}
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
