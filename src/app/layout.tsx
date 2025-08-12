@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Metadata } from "next";
+import { GoogleTagManager } from '@next/third-parties/google'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -56,8 +57,6 @@ export const metadata: Metadata = {
   },
 };
 
-import AmplitudeProvider from "@/components/AmplitudeProvider";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -69,7 +68,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="starfield"></div>
-        <AmplitudeProvider>{children}</AmplitudeProvider>
+        <GoogleTagManager gtmId="GTM-WNZ8TPZV" />
+        {children}
       </body>
     </html>
   );
