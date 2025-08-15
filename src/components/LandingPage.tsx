@@ -61,9 +61,8 @@ export async function LandingPage() {
   }
 
   // Determine locale and get content
-  const headersList = headers();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const country = (headersList as any).get('x-vercel-ip-country')?.toLowerCase() || 'default';
+  const headersList = await headers();
+  const country = headersList.get('x-vercel-ip-country')?.toLowerCase() || 'default';
 
   // Fetch content from Supabase
   let { data: localizedContent } = await supabase
