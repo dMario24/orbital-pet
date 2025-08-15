@@ -34,27 +34,14 @@ export const LandingPageContent: React.FC<LandingPageContentProps> = ({
               sequence={[
                 localizedContent.greeting,
                 2000,
-                '인공위성 애완동물',
-                1000,
-                '벌탱이는 별과함께',
-                500,
-                '우주덕후 모십니다',
-                500,
-                '수학자도 모십니다',
-                500,
-                '외계인도 모십니다',
-                500,
-                'Ελάτε στο Σύμπαν του Orbital Pet!',
-                500,
+                localizedContent.tagline,
+                2000,
               ]}
               wrapper="span"
               speed={50}
               repeat={Infinity}
             />
           </h1>
-          <p className="text-lg md:text-xl text-gray-300">
-            {localizedContent.tagline}
-          </p>
         </div>
         <div className="flex-shrink-0">
           <AsciiSatellite />
