@@ -18,14 +18,12 @@ type LandingPageContentProps = {
   subscribeAction: (prevState: FormState, formData: FormData) => Promise<FormState>;
   kakaoUrl: string;
   localizedContent: LocalizedContent;
-  satelliteFrame: string;
 };
 
 export const LandingPageContent: React.FC<LandingPageContentProps> = ({
   subscribeAction,
   kakaoUrl,
-  localizedContent,
-  satelliteFrame
+  localizedContent
 }) => {
   return (
     <>
@@ -59,7 +57,7 @@ export const LandingPageContent: React.FC<LandingPageContentProps> = ({
           </p>
         </div>
         <div className="flex-shrink-0">
-          <AsciiSatellite frame={satelliteFrame} />
+          <AsciiSatellite />
         </div>
       </div>
 

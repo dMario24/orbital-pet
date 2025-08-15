@@ -1,4 +1,3 @@
-import { get } from '@vercel/edge-config';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
@@ -16,45 +15,8 @@ type LocalizedContent = {
   community_prompt: string;
 };
 
-type EdgeConfigContent = {
-  asciiSatellite?: string;
-  content?: {
-    [locale: string]: LocalizedContent;
-    default: LocalizedContent;
-  };
-};
 
 type FormState = { error?: string; success?: string; } | null;
-
-// Default values in case Edge Config is unavailable
-const DEFAULT_SATELLITE = `
-              ++=--:----=++*
-           #=:------=-=+----:+*
-         *=-:::-+*********++---=#
-        +--::-+**************=---+
-       *---+++**********#*##++++=-*
-      *---==+*+---=+=-----++*#*+*=-*
-      =----*+=-=-------==---+*+*#+-+
-      =-===*+--++-===--=-::--*###+==
-      +-===*=-=%*-===-+#%=---+###*=+
-      *-==++==--*##==--=====-=###*=#
-     ###===+----=====-=-====-+###+#
-   #+#+*++==*+=---===------=*##*+*#
-  #*+*+++#%**+******++++*****##****#
-    *+++**==****************##+=--##
-     ***+--===--+*##+++====+*=-:--=*
-     #+======::=*****-=++--+*=-=---=#
-       *+++*-::=*****-::---=+*=--===*
-          #++=-:=**+-------=++*-=+*+*
-           *+==----=---+++++++**++**#
-           #-----==----======+***+**#
-            =-=-===-=---======+****#
-            +---=+++++=+=----=+#
-            #+=-==++* +==---=+*
-            ********#  *******
-           #*++*****# #*++++**#
-            #****#     #*****#
-`;
 
 const DEFAULT_CONTENT: { [key: string]: LocalizedContent } = {
   default: {
@@ -98,18 +60,31 @@ export async function LandingPage() {
     redirect('/dashboard');
   }
 
-  // Fetch data from Edge Config
-  // Using a more descriptive name for the Edge Config item
-  const edgeConfig = await get<EdgeConfigContent>('landing_page_content');
-
   // Determine locale and get content
   const headersList = headers();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const country = (headersList as any).get('x-vercel-ip-country')?.toLowerCase() || 'default';
-  const localizedContent = edgeConfig?.content?.[country] || edgeConfig?.content?.default || DEFAULT_CONTENT[country] || DEFAULT_CONTENT.default;
 
-  // Get satellite frame
-  const satelliteFrame = edgeConfig?.asciiSatellite || DEFAULT_SATELLITE.trim();
+  // Fetch content from Supabase
+  let { data: localizedContent } = await supabase
+    .from('landing_page_content')
+    .select('greeting, tagline, announcement, community_prompt')
+    .eq('locale', country)
+    .single();
+
+  if (!localizedContent) {
+    const { data: defaultContent } = await supabase
+      .from('landing_page_content')
+      .select('greeting, tagline, announcement, community_prompt')
+      .eq('locale', 'default')
+      .single();
+    localizedContent = defaultContent;
+  }
+
+  // Fallback to default content if Supabase fetch fails
+  if (!localizedContent) {
+    localizedContent = DEFAULT_CONTENT[country] || DEFAULT_CONTENT.default;
+  }
 
   // Other props
   const KAKAO_OPEN_CHAT_URL = process.env.KAKAO_OPEN_CHAT_URL || '#';
@@ -123,7 +98,6 @@ export async function LandingPage() {
           subscribeAction={subscribe}
           kakaoUrl={KAKAO_OPEN_CHAT_URL}
           localizedContent={localizedContent}
-          satelliteFrame={satelliteFrame}
         />
       </TerminalWindow>
     </div>
