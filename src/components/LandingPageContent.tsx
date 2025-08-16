@@ -78,6 +78,9 @@ export const LandingPageContent: React.FC<LandingPageContentProps> = ({
           <a href="/lab" className="text-cyan-400 hover:underline mt-3 inline-block text-sm">
             &gt; bash ./lab/run.sh
           </a>
+          <a href="/conf/noan" className="text-cyan-400 hover:underline mt-3 inline-block text-sm">
+            &gt; cat ./conf/noan.conf
+          </a>
         </div>
       </div>
     </>
