@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     siteName: 'Orbital Pet',
     images: [
       {
-        url: `${siteUrl}/noan/og-noancon2025jeju.png`,
+        url: `${siteUrl}/noan/NOAN.png`,
         width: 800,
         height: 600,
         alt: 'NOANcon 2025 in Jeju',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: conferenceTitle,
     description: conferenceDescription,
-    images: [`${siteUrl}/noan/og-noancon2025jeju.png`],
+    images: [`${siteUrl}/noan/NOAN.png`],
   },
 };
 
