@@ -77,6 +77,14 @@ export default async function NoanConPage() {
         <p className="mt-2 text-gray-300">
           &quot;NOANcon&quot; is a 24-hour conference in Jeju where 33 NOAN citizen speakers offer a sharper, clearer perspective on the current era & AI.
         </p>
+        <div className="flex justify-center gap-4 my-6">
+          <a href="#" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-lg transition-transform transform hover:scale-105">
+            참가자 신청
+          </a>
+          <a href="#" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition-transform transform hover:scale-105">
+            발표자 신청
+          </a>
+        </div>
         <div className="border-t-2 border-dashed border-gray-700 my-4"></div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {speakers.map((speaker, index) => (
