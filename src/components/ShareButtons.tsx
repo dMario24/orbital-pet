@@ -39,6 +39,9 @@ export const ShareButtons = () => {
 
   return (
     <div className="flex flex-wrap items-center justify-between gap-4 mt-6 border-t-2 border-dashed border-gray-700 pt-6">
+      <Link href="/" onClick={handleHomeClick} className="text-cyan-400 hover:underline">
+        &gt; cd ~
+      </Link>
       <div className="flex items-center gap-4">
         <button onClick={() => handleShare('facebook')} className="text-white hover:text-blue-500 transition-colors">
           <FaFacebook size={28} />
@@ -53,9 +56,6 @@ export const ShareButtons = () => {
           Copy URL
         </button>
       </div>
-      <Link href="/" onClick={handleHomeClick} className="text-cyan-400 hover:underline">
-        &gt; cd ~
-      </Link>
     </div>
   );
 };

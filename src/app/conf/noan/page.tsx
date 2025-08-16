@@ -1,9 +1,41 @@
 import { TerminalWindow } from '@/components/TerminalWindow';
 import React from 'react';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import { FullScreenAd } from '@/components/FullScreenAd';
 import { SponsorBanner } from '@/components/SponsorBanner';
 import { ShareButtons } from '@/components/ShareButtons';
+
+const siteUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000';
+const conferenceTitle = 'NOANcon 2025 in Jeju';
+const conferenceDescription = '"NOANcon" is a 24-hour conference in Jeju where 33 NOAN citizen speakers offer a sharper, clearer perspective on the current era & AI.';
+
+export const metadata: Metadata = {
+  title: conferenceTitle,
+  description: conferenceDescription,
+  openGraph: {
+    title: conferenceTitle,
+    description: conferenceDescription,
+    url: `${siteUrl}/conf/noan`,
+    siteName: 'Orbital Pet',
+    images: [
+      {
+        url: `${siteUrl}/og250811.png`,
+        width: 800,
+        height: 600,
+        alt: 'NOANcon 2025 in Jeju',
+      },
+    ],
+    locale: 'ko_KR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: conferenceTitle,
+    description: conferenceDescription,
+    images: [`${siteUrl}/og250811.png`],
+  },
+};
 
 export const revalidate = 600; // Revalidate at most every 10 minutes
 
