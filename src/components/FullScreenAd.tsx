@@ -44,7 +44,7 @@ export const FullScreenAd = () => {
       <div className="bg-gray-800 border-2 border-yellow-500 rounded-lg shadow-lg text-center w-full max-w-xs md:max-w-2xl relative">
         <div className="p-4 md:p-8">
           <Image
-            src="/lab-logo-300.webp"
+            src="/noan/ad/NOAN-P5.png"
             alt="NOANcon 2025"
             width={300}
             height={300}

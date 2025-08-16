@@ -6,9 +6,9 @@ export const SponsorBanner = () => {
       <div className="text-center">
         <h3 className="text-lg font-bold text-yellow-400 mb-2">Sponsored By</h3>
         <div className="flex justify-center items-center gap-8">
-          <p className="text-gray-300">Placeholder Sponsor 1</p>
-          <p className="text-gray-300">Placeholder Sponsor 2</p>
-          <p className="text-gray-300">Placeholder Sponsor 3</p>
+          <p className="text-gray-300">SpaceY</p>
+          <p className="text-gray-300">Maver</p>
+          <p className="text-gray-300">OpenAl</p>
         </div>
       </div>
     </div>

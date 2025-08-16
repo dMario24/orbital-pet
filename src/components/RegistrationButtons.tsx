@@ -22,7 +22,7 @@ export const RegistrationButtons = () => {
         참가자 신청
       </a>
       <a
-        href="#"
+        href="https://github.com/orbital-pet/NOANcon2025"
         onClick={() => handleRegistrationClick('speaker')}
         className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition-transform transform hover:scale-105"
       >
