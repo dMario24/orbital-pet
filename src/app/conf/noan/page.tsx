@@ -1,8 +1,9 @@
 import { TerminalWindow } from '@/components/TerminalWindow';
 import React from 'react';
+import Image from 'next/image';
 import { FullScreenAd } from '@/components/FullScreenAd';
 import { SponsorBanner } from '@/components/SponsorBanner';
-import Link from 'next/link';
+import { ShareButtons } from '@/components/ShareButtons';
 
 export const revalidate = 600; // Revalidate at most every 10 minutes
 
@@ -47,17 +48,23 @@ export default async function NoanConPage() {
         <div className="border-t-2 border-dashed border-gray-700 my-4"></div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {speakers.map((speaker, index) => (
-            <div key={index} className="bg-gray-900 bg-opacity-50 border border-gray-700 rounded-lg p-3">
+            <div key={index} className="bg-gray-900 bg-opacity-50 border border-gray-700 rounded-lg p-4 flex flex-col items-center text-center">
+              <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-700 mb-4">
+                <Image
+                  src={`/noan/speakers/${speaker['이름']}.webp`}
+                  alt={`Photo of ${speaker['이름']}`}
+                  width={96}
+                  height={96}
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <h3 className="text-green-400 font-bold text-lg">{speaker['이름']}</h3>
-              {speaker['소속'] && <p className="text-gray-400 text-sm">{speaker['소속']}</p>}
-              {speaker['주제'] && <p className="text-gray-500 mt-1 text-xs">{speaker['주제']}</p>}
+              <p className="text-gray-400 text-sm min-h-[1.25rem]">{speaker['소속'] || ''}</p>
+              <p className="text-gray-500 mt-1 text-xs min-h-[1rem]">{speaker['주제'] || ''}</p>
             </div>
           ))}
         </div>
-        <div className="border-t-2 border-dashed border-gray-700 my-6"></div>
-        <Link href="/" className="text-cyan-400 hover:underline mt-4 inline-block">
-          &gt; cd ~
-        </Link>
+        <ShareButtons />
       </TerminalWindow>
     </div>
   );
