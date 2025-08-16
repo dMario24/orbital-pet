@@ -7,7 +7,7 @@ import { SponsorBanner } from '@/components/SponsorBanner';
 import { ShareButtons } from '@/components/ShareButtons';
 import { RegistrationButtons } from '@/components/RegistrationButtons';
 
-const siteUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000';
+const siteUrl = 'https://orbital-pet.diginori.com';
 const conferenceTitle = 'NOANcon 2025 in Jeju';
 const conferenceDescription = '"NOANcon" is a 24-hour conference in Jeju where 33 NOAN citizen speakers offer a sharper, clearer perspective on the current era & AI.';
 
