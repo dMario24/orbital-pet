@@ -1,5 +1,8 @@
 import { TerminalWindow } from '@/components/TerminalWindow';
 import React from 'react';
+import { FullScreenAd } from '@/components/FullScreenAd';
+import { SponsorBanner } from '@/components/SponsorBanner';
+import Link from 'next/link';
 
 export const revalidate = 600; // Revalidate at most every 10 minutes
 
@@ -32,7 +35,9 @@ export default async function NoanConPage() {
 
   return (
     <div className="font-mono text-white min-h-screen flex items-center justify-center p-4">
+      <FullScreenAd />
       <TerminalWindow title="cat ./conf/noan.conf">
+        <SponsorBanner />
         <div className="text-cyan-400 text-2xl font-bold">
           NOAN con 2025 in jeju
         </div>
@@ -49,6 +54,10 @@ export default async function NoanConPage() {
             </div>
           ))}
         </div>
+        <div className="border-t-2 border-dashed border-gray-700 my-6"></div>
+        <Link href="/" className="text-cyan-400 hover:underline mt-4 inline-block">
+          &gt; cd ~
+        </Link>
       </TerminalWindow>
     </div>
   );
