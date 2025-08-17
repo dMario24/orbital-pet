@@ -6,9 +6,7 @@ export const SponsorBanner = () => {
       <div className="text-center">
         <h3 className="text-lg font-bold text-yellow-400 mb-2">Sponsored By</h3>
         <div className="flex justify-center items-center gap-8">
-          <p className="text-gray-300">SpaceY</p>
-          <p className="text-gray-300">Maver</p>
-          <p className="text-gray-300">OpenAl</p>
+          <p className="text-gray-300">(주)인사이트마이닝</p>
         </div>
       </div>
     </div>
