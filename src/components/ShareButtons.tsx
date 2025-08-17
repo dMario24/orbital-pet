@@ -55,6 +55,9 @@ export const ShareButtons = () => {
         >
           Copy URL
         </button>
+        <Link href="https://github.com/orbital-pet/NOANcon2025/pulls?q=is%3Apr+label%3A%EB%B0%9C%ED%91%9C%EC%9E%90+" onClick={handleHomeClick} className="text-cyan-400 hover:underline">
+          발표자료
+        </Link>
       </div>
     </div>
   );
