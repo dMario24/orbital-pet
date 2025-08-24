@@ -45,6 +45,7 @@ type Speaker = {
   '소속': string;
   '주제': string;
   '참조'?: string;
+  '사진'?: string;
 };
 
 async function getSpeakers() {
@@ -94,7 +95,7 @@ export default async function NoanConPage() {
               )}
               <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-700 mb-4">
                 <Image
-                  src={`/noan/speakers/${speaker['이름']}.webp`}
+                  src={speaker['사진'] ? speaker['사진'] : `/noan/speakers/${speaker['이름']}.webp`}
                   alt={`Photo of ${speaker['이름']}`}
                   width={96}
                   height={96}
