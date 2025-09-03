@@ -48,6 +48,16 @@ type Speaker = {
   '사진'?: string;
 };
 
+type Sponsor = {
+  name: string;
+  url: string;
+};
+
+type Community = {
+  name: string;
+  url: string;
+};
+
 async function getSpeakers() {
   const res = await fetch('https://raw.githubusercontent.com/orbital-pet/NOANcon2025/refs/heads/main/speakers_list.json', {
     next: { revalidate: 600 }
@@ -66,8 +76,39 @@ async function getSpeakers() {
   return speakers;
 }
 
+async function getSponsors() {
+  const res = await fetch(`${siteUrl}/noan/sponsors.json`, {
+    next: { revalidate: 600 }
+  });
+  if (!res.ok) {
+    // Return empty array if the file is not found
+    if (res.status === 404) {
+      return [];
+    }
+    throw new Error('Failed to fetch sponsors');
+  }
+  const sponsors: Sponsor[] = await res.json();
+  return sponsors;
+}
+
+async function getCommunities() {
+  const res = await fetch(`${siteUrl}/noan/communities.json`, {
+    next: { revalidate: 600 }
+  });
+  if (!res.ok) {
+    if (res.status === 404) {
+        return [];
+    }
+    throw new Error('Failed to fetch communities');
+  }
+  const communities: Community[] = await res.json();
+  return communities;
+}
+
 export default async function NoanConPage() {
   const speakers = await getSpeakers();
+  const sponsors = await getSponsors();
+  const communities = await getCommunities();
 
   return (
     <div className="font-mono text-white min-h-screen flex items-center justify-center p-4">
@@ -108,6 +149,39 @@ export default async function NoanConPage() {
             </div>
           ))}
         </div>
+
+        {sponsors.length > 0 && (
+          <>
+            <div className="border-t-2 border-dashed border-gray-700 my-4"></div>
+            <div className="text-cyan-400 text-xl font-bold mt-8 mb-4">
+              Sponsors
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {sponsors.map((sponsor, index) => (
+                <a key={index} href={sponsor.url} target="_blank" rel="noopener noreferrer" className="bg-gray-900 bg-opacity-50 border border-gray-700 rounded-lg p-4 text-center hover:border-cyan-400 transition-colors">
+                  <h3 className="text-green-400 font-bold text-lg">{sponsor.name}</h3>
+                </a>
+              ))}
+            </div>
+          </>
+        )}
+
+        {communities.length > 0 && (
+          <>
+            <div className="border-t-2 border-dashed border-gray-700 my-4"></div>
+            <div className="text-cyan-400 text-xl font-bold mt-8 mb-4">
+              Communities
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {communities.map((community, index) => (
+                <a key={index} href={community.url} target="_blank" rel="noopener noreferrer" className="bg-gray-900 bg-opacity-50 border border-gray-700 rounded-lg p-4 text-center hover:border-cyan-400 transition-colors">
+                  <h3 className="text-green-400 font-bold text-lg">{community.name}</h3>
+                </a>
+              ))}
+            </div>
+          </>
+        )}
+
         <ShareButtons />
       </TerminalWindow>
     </div>
