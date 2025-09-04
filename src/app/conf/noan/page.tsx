@@ -3,12 +3,12 @@ import React from 'react';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { FullScreenAd } from '@/components/FullScreenAd';
-import { SponsorBanner } from '@/components/SponsorBanner';
+// import { SponsorBanner } from '@/components/SponsorBanner';
 import { ShareButtons } from '@/components/ShareButtons';
 import { RegistrationButtons } from '@/components/RegistrationButtons';
 
 const siteUrl = 'https://orbital-pet.diginori.com';
-const conferenceTitle = 'NOANcon 2025 in Jeju';
+const conferenceTitle = 'NOANcon 2025.12.12 in Jeju';
 const conferenceDescription = '"NOANcon" is a 24-hour conference in Jeju where 33 NOAN citizen speakers offer a sharper, clearer perspective on the current era & AI.';
 
 export const metadata: Metadata = {
@@ -114,13 +114,22 @@ export default async function NoanConPage() {
     <div className="font-mono text-white min-h-screen flex items-center justify-center p-4">
       <FullScreenAd />
       <TerminalWindow title="cat ./conf/noan.conf">
-        <SponsorBanner />
+        {/* <SponsorBanner /> */}
         <div className="text-cyan-400 text-2xl font-bold">
-          NOAN con 2025 in jeju
+          NOANcon 2025 in jeju
         </div>
-        <p className="mt-2 text-gray-300">
-          &quot;NOANcon&quot; is a 24-hour conference in Jeju where 33 NOAN citizen speakers offer a sharper, clearer perspective on the current era & AI.
-        </p>
+        <div className="mt-2 text-gray-300 space-y-3">
+          <p>
+            20세기 초 당대 최고의 물리학자들은 벨기에에 모였고, 19-20세기에 당대 최고의 문학가와 예술가들은 파리의 카페에 모였습니다. 그들은 얘기를 나누며 토론했고 때로는 싸우기도 했지만, 언제나 사유의 확장의 기쁨을 향유했습니다.
+          </p>
+          <p>
+            AI의 발전은 동전과 같아서 한쪽 면에는 효용성의 극대화가, 다른 면에는 그로 인한 악영향이 있습니다. 이것이 우리가 AI를 두고 위기라고 부르는 이유입니다. 노안콘은 AI에 대한 불안, 공포, 두려움 등을 어떻게 떨쳐내고 극복할지에 대한 사유의 확장이 이루어질 곳입니다.
+          </p>
+          <p>
+            우리의 만남은 아주 잘난 사람들의 만남은 아니지만, 길지도 자주 반복되는 만남은 또 아니지만, 한국의 솔베이 회의가, 21세기의 레 되 마고(Les Deux Magots)가 되기를 바랍니다.
+          </p>
+          <p className="text-right">- 청년 철학자 @고태경 -</p>
+        </div>
         <RegistrationButtons />
         <div className="border-t-2 border-dashed border-gray-700 my-4"></div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
