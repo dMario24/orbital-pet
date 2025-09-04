@@ -77,7 +77,7 @@ async function getSpeakers() {
 }
 
 async function getSponsors() {
-  const res = await fetch(`${siteUrl}/noan/sponsors.json`, {
+  const res = await fetch('https://raw.githubusercontent.com/orbital-pet/NOANcon2025/refs/heads/main/sponsors.json', {
     next: { revalidate: 600 }
   });
   if (!res.ok) {
@@ -92,7 +92,7 @@ async function getSponsors() {
 }
 
 async function getCommunities() {
-  const res = await fetch(`${siteUrl}/noan/communities.json`, {
+  const res = await fetch('https://raw.githubusercontent.com/orbital-pet/NOANcon2025/refs/heads/main/communities.json', {
     next: { revalidate: 600 }
   });
   if (!res.ok) {
