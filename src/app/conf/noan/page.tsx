@@ -57,6 +57,7 @@ type Sponsor = {
 type Community = {
   name: string;
   url: string;
+  logo?: string;
 };
 
 async function getSpeakers() {
@@ -185,7 +186,18 @@ export default async function NoanConPage() {
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {communities.map((community, index) => (
-                  <a key={index} href={community.url} target="_blank" rel="noopener noreferrer" className="bg-gray-900 bg-opacity-50 border border-gray-700 rounded-lg p-4 text-center hover:border-cyan-400 transition-colors">
+                  <a key={index} href={community.url} target="_blank" rel="noopener noreferrer" className="bg-gray-900 bg-opacity-50 border border-gray-700 rounded-lg p-4 text-center hover:border-cyan-400 transition-colors flex flex-col items-center justify-center">
+                    {community.logo && (
+                      <div className="relative w-full h-20 mb-2">
+                        <Image
+                          src={community.logo}
+                          alt={`${community.name} logo`}
+                          fill
+                          style={{ objectFit: 'contain' }}
+                          className="rounded-md"
+                        />
+                      </div>
+                    )}
                     <h3 className="text-green-400 font-bold text-lg">{community.name}</h3>
                   </a>
                 ))}
